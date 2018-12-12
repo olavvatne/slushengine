@@ -321,13 +321,13 @@ class Motor(sBoard):
         if value > mask: value = mask
 
         if byte_len >= 3.0:
-            temp = self.xfer(value >> 16)
+            temp = self.xfer(int(value) >> 16)
             ret_value |= temp << 16
         if byte_len >= 2.0:
-            temp = self.xfer(value >>8)
+            temp = self.xfer(int(value) >>8)
             ret_value |= temp << 8
         if byte_len >= 1.0:
-            temp = self.xfer(value)
+            temp = self.xfer(int(value))
             ret_value |= temp
        
         return (ret_value & mask)
