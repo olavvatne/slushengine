@@ -16,7 +16,7 @@ my $packages = "python3 python3-setuptools python3-pip git python3-rpi.gpio pyth
 my $pip_packages = "spidev inputs smbus2";
 
 # git repos to install
-my $slush_repo = qw(https://github.com/Roboteurs/slushengine); 
+my $slush_repo = qw(https://github.com/olavvatne/slushengine); 
 
 # system commands
 my $apt_update_cmd="sudo apt-get update";
