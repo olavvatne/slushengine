@@ -147,9 +147,9 @@ class Motor(sBoard):
         speedVal = self.spdCalc(spd)
         self.xfer(LReg.RUN | dir)
         if speedVal > 0xfffff: speedVal = 0xfffff
-        self.xfer(speedVal >> 16)
-        self.xfer(speedVal >> 8)
-        self.xfer(speedVal)
+        self.xfer(int(speedVal) >> 16)
+        self.xfer(int(speedVal) >> 8)
+        self.xfer(int(speedVal))
 
     ''' sets the clock source '''
     def stepClock(self, dir):
@@ -168,25 +168,25 @@ class Motor(sBoard):
 
         self.xfer(LReg.MOVE | dir)
         if n_stepABS > 0x3fffff: nStep = 0x3fffff
-        self.xfer(n_stepABS >> 16)
-        self.xfer(n_stepABS >> 8)
-        self.xfer(n_stepABS)
+        self.xfer(int(n_stepABS) >> 16)
+        self.xfer(int(n_stepABS) >> 8)
+        self.xfer(int(n_stepABS))
 
     ''' move to a position with refrence to the motors current position '''
     def goTo(self, pos):
         self.xfer(LReg.GOTO)
         if pos > 0x3fffff: pos = 0x3fffff
-        self.xfer(pos >> 16)
-        self.xfer(pos >> 8)
-        self.xfer(pos)
+        self.xfer(int(pos) >> 16)
+        self.xfer(int(pos) >> 8)
+        self.xfer(int(pos))
 
     ''' same as go to but with a forced direction '''
     def goToDir(self, dir, pos):
         self.xfer(LReg.GOTO_DIR)
         if pos > 0x3fffff: pos = 0x3fffff
-        self.xfer(pos >> 16)
-        self.xfer(pos >> 8)
-        self.xfer(pos)
+        self.xfer(int(pos) >> 16)
+        self.xfer(int(pos) >> 8)
+        self.xfer(int(pos))
 
     ''' sets the hardstop option for the limit switch '''
     def setLimitHardStop(self, stop):
@@ -197,9 +197,9 @@ class Motor(sBoard):
     def goUntilPress(self, act, dir, spd):
         self.xfer(LReg.GO_UNTIL | act | dir)
         if spd > 0x3fffff: spd = 0x3fffff
-        self.xfer(spd >> 16)
-        self.xfer(spd >> 8)
-        self.xfer(spd)
+        self.xfer(int(spd) >> 16)
+        self.xfer(int(spd) >> 8)
+        self.xfer(int(spd))
 
     def getSwitch(self):
         if self.getStatus() & 0x4: return 1
@@ -230,9 +230,9 @@ class Motor(sBoard):
         if value > 0x3fffff: value = 0x3fffff
         if value < -0x3fffff: value = -0x3fffff
 
-        self.xfer(value >> 16)
-        self.xfer(value >> 8)
-        self.xfer(value)
+        self.xfer(int(value) >> 16)
+        self.xfer(int(value) >> 8)
+        self.xfer(int(value))
 
     ''' set current position to the home position '''
     def setAsHome(self):
